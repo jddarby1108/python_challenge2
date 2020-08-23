@@ -2,6 +2,7 @@ import os
 import csv
 
 from collections import Counter
+from collections import namedtuple
 
 csv_path = os.path.join('Resources', 'election_data.csv')
 
@@ -18,6 +19,7 @@ vote_perc = []
 votes_list = []
 max_votes = []
 winner = []
+vote_results = []
 
 
 
@@ -47,16 +49,14 @@ with open(csv_path, 'r') as csv_file:
         if person not in cand_name:
             cand_name.append(person)
 
-       
     for index, person in enumerate(cand_name):
         votes = candidates.count(cand_name[index])
         vote_perc = (votes / vote_count) * 100
         votes_list.append(votes)
         max_votes = max(votes_list)
-                              
-        print(str(cand_name[index]) + ": " + str(vote_perc) + "%  (" + str(votes) + ")")
         
-
+        print(str(cand_name[index]) + ": " + ("{:.3f}".format(vote_perc)) + "%  (" + str(votes) + ")")
+        
         for person in votes_list:
             if votes == max_votes:
                 winner = cand_name[index]
@@ -64,7 +64,26 @@ with open(csv_path, 'r') as csv_file:
 print(spacer)
 print("winner:  " + winner)
 print(spacer)
-            
+
+# export results to a text file
+output_path = os.path.join("new.csv")
+
+with open(output_path, 'w') as csvfile:
+
+    # Initialize csv.writer and write to file new
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    csvwriter.writerow(["Election Results"])
+    csvwriter.writerow([spacer])
+    csvwriter.writerow([f"Total Votes: {vote_count}"])
+    csvwriter.writerow([spacer])
+    csvwriter.writerow(["I could not figure out"])
+    csvwriter.writerow(["how to print a nested for loop"])
+    csvwriter.writerow(["at the end of the command"])
+    csvwriter.writerow(["BUT it did print to terminal :) "])
+    csvwriter.writerow(["winner:  " + winner])
+    csvwriter.writerow([spacer])      
+                
     
     
 
