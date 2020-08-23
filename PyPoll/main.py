@@ -14,6 +14,7 @@ person = []
 cand_name = []
 name = []
 votes = []
+vote_perc = []
 
 
 #Open and read csv
@@ -33,21 +34,17 @@ with open(csv_path, 'r') as csv_file:
         vote_count = len(voter_ids)
 
     
-    # initializing candidate list
+    # initializing candidate list and counting votes
     for person in candidates:
         if person not in cand_name:
             cand_name.append(person)
 
-      
-   
+       
     for index, person in enumerate(cand_name):
         votes = candidates.count(cand_name[index])
+        vote_perc = (votes / vote_count) * 100
 
-        print(cand_name[index], votes)
-    
-
-
-
+        print(cand_name[index], vote_perc, votes)
 
             
                 
