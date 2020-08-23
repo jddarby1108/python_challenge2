@@ -15,7 +15,10 @@ cand_name = []
 name = []
 votes = []
 vote_perc = []
-form_string = []
+votes_list = []
+max_votes = []
+winner = []
+
 
 
 #Open and read csv
@@ -48,37 +51,22 @@ with open(csv_path, 'r') as csv_file:
     for index, person in enumerate(cand_name):
         votes = candidates.count(cand_name[index])
         vote_perc = (votes / vote_count) * 100
-
-
-        form_string = print(str(cand_name[index]) + ": " + str(vote_perc) + "%  (" + str(votes) + ")")
-
-   
+        votes_list.append(votes)
+        max_votes = max(votes_list)
+                              
+        print(str(cand_name[index]) + ": " + str(vote_perc) + "%  (" + str(votes) + ")")
         
-                
 
-    
-    
+        for person in votes_list:
+            if votes == max_votes:
+                winner = cand_name[index]
+
+print(spacer)
+print("winner:  " + winner)
+print(spacer)
             
-        
-# # print all values to the terminal
-# print("Election Results")
-# print(spacer)
-# print(f"Total Votes: {vote_count}")
-# print(spacer)
-        
+    
+    
 
-
-
-
-# #export results to a text file
-# output_path = os.path.join("new.csv")
-
-# with open(output_path, 'w') as csvfile:
-
-#     # Initialize csv.writer and write to file new
-#     csvwriter = csv.writer(csvfile, delimiter=',')
-
-#     csvwriter.writerow(["Election Results"]) 
-#     csvwriter.writerow([spacer])
-#     csvwriter.writerow([f"Total Votes: %5d " % (int(vote_count))])
-#     csvwriter.writerow([spacer])
+    
+    
