@@ -15,6 +15,7 @@ cand_name = []
 name = []
 votes = []
 vote_perc = []
+form_string = []
 
 
 #Open and read csv
@@ -33,6 +34,10 @@ with open(csv_path, 'r') as csv_file:
         # The total number of votes cast
         vote_count = len(voter_ids)
 
+    print("Election Results")
+    print(spacer)
+    print(f"Total Votes: {vote_count}")
+    print(spacer)
     
     # initializing candidate list and counting votes
     for person in candidates:
@@ -44,9 +49,11 @@ with open(csv_path, 'r') as csv_file:
         votes = candidates.count(cand_name[index])
         vote_perc = (votes / vote_count) * 100
 
-        print(cand_name[index], vote_perc, votes)
 
-            
+        form_string = print(str(cand_name[index]) + ": " + str(vote_perc) + "%  (" + str(votes) + ")")
+
+   
+        
                 
 
     
